@@ -7,10 +7,12 @@ const moodRoutes = require("./routes/mood");
 const statsRoutes = require("./routes/stats"); 
 const profileRoutes = require("./routes/profile"); 
 const contactRoutes = require('./routes/contact');
+const helmet = require('helmet');
+const morgan = require('morgan');
 
 dotenv.config();
 const app = express();
-
+app.use(helmet());
 // Middleware
 app.use(cors({
   origin: process.env.FRONTEND_URL || 'https://mood-tracker-git-main-jacobkaus-projects.vercel.app',
@@ -21,6 +23,12 @@ app.use((req, res, next) => {
   console.log(`Incoming: ${req.method} ${req.path}`);
   next();
 });
+
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev')); // verbose logs for dev
+} else if (process.env.NODE_ENV === 'production') {
+  app.use(morgan('combined')); // standard Apache-style logs
+}
 
 // Routes
 app.use("/api/auth", authRoutes);

@@ -5,7 +5,13 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { protect } = require('../middleware/authMiddleware');
 
-
+router.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "ok",
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
+  });
+});
 router.post("/register", async (req, res) => {
   try {
     const { username, password } = req.body;

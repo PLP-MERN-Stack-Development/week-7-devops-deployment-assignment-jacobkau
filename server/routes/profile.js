@@ -4,6 +4,14 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const { protect } = require("../middleware/authMiddleware");
 
+
+router.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "ok",
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
+  });
+});
 // @desc    Get user profile
 // @route   GET /api/profile
 router.get("/", protect, async (req, res) => {

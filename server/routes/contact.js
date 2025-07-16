@@ -12,6 +12,14 @@ const transporter = nodemailer.createTransport({
   }
 });
 
+router.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "ok",
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
+  });
+});
+
 // @desc    Handle contact form submission
 // @route   POST /api/contact
 router.post('/', async (req, res) => {

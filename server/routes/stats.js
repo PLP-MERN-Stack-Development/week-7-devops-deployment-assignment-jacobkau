@@ -3,6 +3,14 @@ const router = express.Router();
 const Mood = require("../models/Mood");
 const { protect } = require("../middleware/authMiddleware");
 
+
+router.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "ok",
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
+  });
+});
 // @desc    Get mood statistics
 // @route   GET /api/stats
 router.get("/", protect, async (req, res) => {

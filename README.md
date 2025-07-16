@@ -1,78 +1,201 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=19947896&assignment_repo_type=AssignmentRepo)
-# Deployment and DevOps for MERN Applications
+# 😄 MOODTRACKER
 
-This assignment focuses on deploying a full MERN stack application to production, implementing CI/CD pipelines, and setting up monitoring for your application.
+**A Personal Mood Tracking Application**
 
-## Assignment Overview
+[![Live Demo](https://img.shields.io/badge/Live-Demo-green?style=for-the-badge&logo=vercel)](https://mood-tracker-git-main-jacobkaus-projects.vercel.app/)
 
-You will:
-1. Prepare your MERN application for production deployment
-2. Deploy the backend to a cloud platform
-3. Deploy the frontend to a static hosting service
-4. Set up CI/CD pipelines with GitHub Actions
-5. Implement monitoring and maintenance strategies
+---
 
-## Getting Started
+## 📸 Screenshots
 
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Follow the setup instructions in the `Week7-Assignment.md` file
-4. Use the provided templates and configuration files as a starting point
+![MoodTracker Screenshot](./image.png)  
+![CI/CD Workflow Screenshot](./ci-pipeline.png)
 
-## Files Included
+---
 
-- `Week7-Assignment.md`: Detailed assignment instructions
-- `.github/workflows/`: GitHub Actions workflow templates
-- `deployment/`: Deployment configuration files and scripts
-- `.env.example`: Example environment variable templates
-- `monitoring/`: Monitoring configuration examples
+## 📋 Table of Contents
 
-## Requirements
+- [Features](#features)
+- [Technologies](#technologies)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Usage](#usage)
+- [API Endpoints](#api-endpoints)
+- [Deployment](#deployment)
+- [Monitoring & Maintenance](#monitoring--maintenance)
+- [Contributing](#contributing)
+- [License](#license)
+- [CI/CD Status](#cicd-status)
+- [Related Links](#related-links)
 
-- A completed MERN stack application from previous weeks
-- Accounts on the following services:
-  - GitHub
-  - MongoDB Atlas
-  - Render, Railway, or Heroku (for backend)
-  - Vercel, Netlify, or GitHub Pages (for frontend)
-- Basic understanding of CI/CD concepts
+---
 
-## Deployment Platforms
+## ✨ Features
 
-### Backend Deployment Options
-- **Render**: Easy to use, free tier available
-- **Railway**: Developer-friendly, generous free tier
-- **Heroku**: Well-established, extensive documentation
+- 📊 **Comprehensive Mood Tracking** – Log your emotions and reflect on trends.
+- 🔒 **Secure Authentication** – JWT-based login system with bcrypt password hashing.
+- 🎨 **Personalization** – Customizable profiles and themes.
+- 📈 **Data Insights** – Visualize mood data over time with intuitive charts.
 
-### Frontend Deployment Options
-- **Vercel**: Optimized for React apps, easy integration
-- **Netlify**: Great for static sites, good CI/CD
-- **GitHub Pages**: Free, integrated with GitHub
+---
 
-## CI/CD Pipeline
+## 🛠️ Technologies
 
-The assignment includes templates for setting up GitHub Actions workflows:
-- `frontend-ci.yml`: Tests and builds the React application
-- `backend-ci.yml`: Tests the Express.js backend
-- `frontend-cd.yml`: Deploys the frontend to your chosen platform
-- `backend-cd.yml`: Deploys the backend to your chosen platform
+### ⚛️ Frontend
+- React 18, Vite, Tailwind CSS
+- React Router v6, Axios, Chart.js
 
-## Submission
+### 🔧 Backend
+- Node.js, Express, MongoDB, Mongoose
+- JWT, Bcrypt, Helmet, Morgan
 
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+### ⚙️ DevOps
+- GitHub Actions (CI/CD)
+- Vercel (Frontend), Render (Backend)
+- MongoDB Atlas (Cloud DB)
 
-1. Complete all deployment tasks
-2. Set up CI/CD pipelines with GitHub Actions
-3. Deploy both frontend and backend to production
-4. Document your deployment process in the README.md
-5. Include screenshots of your CI/CD pipeline in action
-6. Add URLs to your deployed applications
+---
 
-## Resources
+## 🧰 Installation
 
-- [GitHub Actions Documentation](https://docs.github.com/en/actions)
-- [MongoDB Atlas Documentation](https://docs.atlas.mongodb.com/)
-- [Render Documentation](https://render.com/docs)
-- [Railway Documentation](https://docs.railway.app/)
-- [Vercel Documentation](https://vercel.com/docs)
-- [Netlify Documentation](https://docs.netlify.com/) 
+```bash
+git clone https://github.com/yourusername/moodtracker.git
+cd moodtracker
+```
+
+### 📦 Backend Setup
+
+```bash
+cd server
+npm install
+```
+
+### 🎨 Frontend Setup
+
+```bash
+cd ../client
+npm install
+```
+
+---
+
+## ⚙️ Configuration
+
+Create `.env` files using the examples provided.
+
+### `server/.env`
+
+```env
+PORT=5000
+MONGO_URI=your_mongodb_atlas_url
+JWT_SECRET=your_jwt_secret_key
+JWT_EXPIRE=30d
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASS=your_email_password
+```
+
+### `client/.env`
+
+```env
+VITE_API_BASE_URL=https://your-backend-api-url.com
+```
+
+Check `.env.example` files for templates.
+
+---
+
+## ▶️ Usage
+
+```bash
+# Start backend
+cd server
+npm run dev
+
+# Start frontend
+cd ../client
+npm run dev
+```
+
+Visit: [http://localhost:5173](http://localhost:5173)
+
+---
+
+## 📡 API Endpoints
+
+| Endpoint               | Method | Description                |
+|------------------------|--------|----------------------------|
+| `/api/auth/register`  | POST   | User registration          |
+| `/api/auth/login`     | POST   | User login                 |
+| `/api/auth/me`        | GET    | Get current user profile   |
+| `/api/auth/health`    | GET    | Health check route         |
+| `/api/moods`          | GET    | Get all moods for user     |
+| `/api/moods`          | POST   | Create new mood entry      |
+| `/api/moods/:id`      | DELETE | Delete mood entry          |
+| `/api/moods/stats`    | GET    | Get mood statistics        |
+| `/api/profile`        | PUT    | Update user profile        |
+
+---
+
+## 🚀 Deployment
+
+### ✅ Frontend: **Vercel**
+
+🌐 [Live App](https://mood-tracker-git-main-jacobkaus-projects.vercel.app)
+
+- Auto-deploys from GitHub `main` branch  
+- HTTPS + caching enabled
+
+### ✅ Backend: **Render**
+
+🌐 [Live API](https://moodtracker-api.onrender.com)
+
+- GitHub auto-deploy + environment variables
+- Logging with Morgan, security via Helmet
+
+---
+
+## 🧑‍🔧 Monitoring & Maintenance
+
+- **Health Check**: `/api/auth/health` endpoint monitored by UptimeRobot
+- **Logging**: Express error handlers + Morgan middleware
+- **Error Tracking**: Ready for integration with Sentry
+- **Maintenance**:
+  - Weekly security updates
+  - Daily MongoDB Atlas backups
+  - Deployment rollbacks via GitHub history
+  - CI tests on all pushes to main
+
+---
+
+## 🤝 Contributing
+
+1. 🍴 Fork this repo
+2. 🛠 Create a feature branch:  
+   `git checkout -b feature/YourFeatureName`
+3. 💬 Commit your changes:  
+   `git commit -m "Add your message"`
+4. 🚀 Push to the branch:  
+   `git push origin feature/YourFeatureName`
+5. 🔁 Create a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.  
+See the [LICENSE](./LICENSE) file for details.
+
+---
+
+## 🧪 CI/CD Status
+
+GitHub Actions run tests and lint the codebase on every push to `main`.
+
+Check `.github/workflows/ci.yml` for configuration.
+
+---
+
+## 🔗 Related Links
+
+- 🌐 **Frontend**: [https://mood-tracker-git-main-jacobkaus-projects.vercel.app](https://mood-tracker-git-main-jacobkaus-projects.vercel.app)
+- 🌐 **Backend**: [https://moodtracker-api.onrender.com/api](https://moodtracker-api.onrender.com/api)

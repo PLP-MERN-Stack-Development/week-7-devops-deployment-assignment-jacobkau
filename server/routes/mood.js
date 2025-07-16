@@ -15,6 +15,15 @@ router.route('/')
 router.route('/:id')
   .delete(protect, deleteMood);
 
+
+  router.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "ok",
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
+  });
+});
+
   router.get('/stats', protect, async (req, res) => {
   try {
     const moods = await Mood.find({ userId: req.user.id });
