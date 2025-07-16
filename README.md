@@ -9,7 +9,7 @@
 ## 📸 Screenshots
 
 ![MoodTracker Screenshot](./image.png)  
-![CI/CD Workflow Screenshot](./ci-pipeline.png)
+![CI/CD Workflow Screenshot](./Screenshot 2025-07-17 001454.png)
 
 ---
 
